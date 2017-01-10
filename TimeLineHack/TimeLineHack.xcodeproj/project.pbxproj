@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		693B47021E25376B00A501CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693B47011E25376B00A501CF /* Foundation.framework */; };
+		693B47041E25376B00A501CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693B47031E25376B00A501CF /* UIKit.framework */; };
+		693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B470D1E25376B00A501CF /* TimeLineHack.h */; };
+		693B47101E25376B00A501CF /* TimeLineHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 693B470F1E25376B00A501CF /* TimeLineHack.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		693B46FE1E25376B00A501CF /* libTimeLineHack.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libTimeLineHack.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		693B47011E25376B00A501CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		693B47031E25376B00A501CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		693B47081E25376B00A501CF /* control.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = control.txt; path = Package/DEBIAN/control.txt; sourceTree = "<group>"; };
+		693B47091E25376B00A501CF /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
+		693B470B1E25376B00A501CF /* PackageVersion.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PackageVersion.plist; sourceTree = "<group>"; };
+		693B470C1E25376B00A501CF /* TimeLineHack-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeLineHack-Prefix.pch"; sourceTree = "<group>"; };
+		693B470D1E25376B00A501CF /* TimeLineHack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineHack.h; sourceTree = "<group>"; };
+		693B470F1E25376B00A501CF /* TimeLineHack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineHack.m; sourceTree = "<group>"; };
+		693B47131E25376B00A501CF /* 0xdeadfa11 */ = {isa = PBXFileReference; lastKnownFileType = text; name = 0xdeadfa11; path = Package/usr/lib/0xdeadfa11; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		693B46FA1E25376B00A501CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				693B47021E25376B00A501CF /* Foundation.framework in Frameworks */,
+				693B47041E25376B00A501CF /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		693B46F41E25376B00A501CF = {
+			isa = PBXGroup;
+			children = (
+				693B47051E25376B00A501CF /* TimeLineHack */,
+				693B47001E25376B00A501CF /* Frameworks */,
+				693B46FF1E25376B00A501CF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		693B46FF1E25376B00A501CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				693B46FE1E25376B00A501CF /* libTimeLineHack.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		693B47001E25376B00A501CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				693B47011E25376B00A501CF /* Foundation.framework */,
+				693B47031E25376B00A501CF /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		693B47051E25376B00A501CF /* TimeLineHack */ = {
+			isa = PBXGroup;
+			children = (
+				693B470D1E25376B00A501CF /* TimeLineHack.h */,
+				693B470F1E25376B00A501CF /* TimeLineHack.m */,
+				693B47061E25376B00A501CF /* Package */,
+				693B470A1E25376B00A501CF /* Supporting Files */,
+			);
+			path = TimeLineHack;
+			sourceTree = "<group>";
+		};
+		693B47061E25376B00A501CF /* Package */ = {
+			isa = PBXGroup;
+			children = (
+				693B47071E25376B00A501CF /* DEBIAN */,
+				693B47111E25376B00A501CF /* usr */,
+			);
+			name = Package;
+			sourceTree = "<group>";
+		};
+		693B47071E25376B00A501CF /* DEBIAN */ = {
+			isa = PBXGroup;
+			children = (
+				693B47081E25376B00A501CF /* control.txt */,
+				693B47091E25376B00A501CF /* control */,
+			);
+			name = DEBIAN;
+			sourceTree = "<group>";
+		};
+		693B470A1E25376B00A501CF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				693B470B1E25376B00A501CF /* PackageVersion.plist */,
+				693B470C1E25376B00A501CF /* TimeLineHack-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		693B47111E25376B00A501CF /* usr */ = {
+			isa = PBXGroup;
+			children = (
+				693B47121E25376B00A501CF /* lib */,
+			);
+			name = usr;
+			sourceTree = "<group>";
+		};
+		693B47121E25376B00A501CF /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				693B47131E25376B00A501CF /* 0xdeadfa11 */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		693B46FB1E25376B00A501CF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		693B46FD1E25376B00A501CF /* TimeLineHack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 693B47161E25376B00A501CF /* Build configuration list for PBXNativeTarget "TimeLineHack" */;
+			buildPhases = (
+				693B46F91E25376B00A501CF /* Sources */,
+				693B46FA1E25376B00A501CF /* Frameworks */,
+				693B46FB1E25376B00A501CF /* Headers */,
+				693B46FC1E25376B00A501CF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimeLineHack;
+			productName = TimeLineHack;
+			productReference = 693B46FE1E25376B00A501CF /* libTimeLineHack.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		693B46F51E25376B00A501CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				TargetAttributes = {
+					693B46FD1E25376B00A501CF = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 693B46F81E25376B00A501CF /* Build configuration list for PBXProject "TimeLineHack" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 693B46F41E25376B00A501CF;
+			productRefGroup = 693B46FF1E25376B00A501CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				693B46FD1E25376B00A501CF /* TimeLineHack */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		693B46FC1E25376B00A501CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/opt/iOSOpenDev/bin/iosod --xcbp";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		693B46F91E25376B00A501CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				693B47101E25376B00A501CF /* TimeLineHack.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		693B47141E25376B00A501CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Debug;
+		};
+		693B47151E25376B00A501CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(iOSOpenDevPath)/frameworks/**",
+					"$(SDKROOT)/System/Library/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(iOSOpenDevPath)/include/**";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LIBRARY_SEARCH_PATHS = "$(iOSOpenDevPath)/lib/**";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				iOSOpenDevPath = /opt/iOSOpenDev;
+			};
+			name = Release;
+		};
+		693B47171E25376B00A501CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_BITCODE = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeLineHack/TimeLineHack-Prefix.pch";
+				INSTALL_PATH = /usr/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Debug;
+		};
+		693B47181E25376B00A501CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_BITCODE = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TimeLineHack/TimeLineHack-Prefix.pch";
+				INSTALL_PATH = /usr/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				iOSOpenDevBuildPackageOnAnyBuild = NO;
+				iOSOpenDevCopyOnBuild = NO;
+				iOSOpenDevDevice = "";
+				iOSOpenDevInstallOnAnyBuild = NO;
+				iOSOpenDevInstallOnProfiling = YES;
+				iOSOpenDevRespringOnInstall = YES;
+				iOSOpenDevUsePackageVersionPList = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		693B46F81E25376B00A501CF /* Build configuration list for PBXProject "TimeLineHack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				693B47141E25376B00A501CF /* Debug */,
+				693B47151E25376B00A501CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		693B47161E25376B00A501CF /* Build configuration list for PBXNativeTarget "TimeLineHack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				693B47171E25376B00A501CF /* Debug */,
+				693B47181E25376B00A501CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 693B46F51E25376B00A501CF /* Project object */;
+}
