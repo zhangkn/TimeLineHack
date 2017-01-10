@@ -9,6 +9,19 @@
 #import "TimeLineHack.h"
 #import "TLHSwizzle.h"
 
+static void (*orig_TimeLine_reloadTableView)(id self, SEL _cmd);
+static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
+    
+    NSLog(@"new_TimeLine_reloadTableView");
+    
+    orig_TimeLine_reloadTableView(self, _cmd);
+}
+
+static int TLHMian() __attribute__ ((constructor)) {
+    
+    class_swizzleMethodAndStore(NSClassFromString(@"WCTimeLineViewController"), @selector(reloadTableView), (IMP)new_TimeLine_reloadTableView, (IMP *)&orig_TimeLine_reloadTableView);
+}
+
 @implementation TimeLineHack
 
 + (id)shareInstance {
