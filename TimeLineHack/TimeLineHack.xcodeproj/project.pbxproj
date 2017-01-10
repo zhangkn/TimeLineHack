@@ -11,6 +11,8 @@
 		693B47041E25376B00A501CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693B47031E25376B00A501CF /* UIKit.framework */; };
 		693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B470D1E25376B00A501CF /* TimeLineHack.h */; };
 		693B47101E25376B00A501CF /* TimeLineHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 693B470F1E25376B00A501CF /* TimeLineHack.m */; };
+		693B471B1E2537B500A501CF /* TLHSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B47191E2537B500A501CF /* TLHSwizzle.h */; };
+		693B471C1E2537B500A501CF /* TLHSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 693B471A1E2537B500A501CF /* TLHSwizzle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		693B470D1E25376B00A501CF /* TimeLineHack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeLineHack.h; sourceTree = "<group>"; };
 		693B470F1E25376B00A501CF /* TimeLineHack.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeLineHack.m; sourceTree = "<group>"; };
 		693B47131E25376B00A501CF /* 0xdeadfa11 */ = {isa = PBXFileReference; lastKnownFileType = text; name = 0xdeadfa11; path = Package/usr/lib/0xdeadfa11; sourceTree = "<group>"; };
+		693B47191E2537B500A501CF /* TLHSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLHSwizzle.h; sourceTree = "<group>"; };
+		693B471A1E2537B500A501CF /* TLHSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLHSwizzle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 			children = (
 				693B470D1E25376B00A501CF /* TimeLineHack.h */,
 				693B470F1E25376B00A501CF /* TimeLineHack.m */,
+				693B47191E2537B500A501CF /* TLHSwizzle.h */,
+				693B471A1E2537B500A501CF /* TLHSwizzle.m */,
 				693B47061E25376B00A501CF /* Package */,
 				693B470A1E25376B00A501CF /* Supporting Files */,
 			);
@@ -127,6 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */,
+				693B471B1E2537B500A501CF /* TLHSwizzle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				693B471C1E2537B500A501CF /* TLHSwizzle.m in Sources */,
 				693B47101E25376B00A501CF /* TimeLineHack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

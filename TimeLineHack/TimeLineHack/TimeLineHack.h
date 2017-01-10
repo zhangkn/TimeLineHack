@@ -10,4 +10,6 @@
 
 @interface TimeLineHack : NSObject
 
++ (id)shareInstance;
+
 @end

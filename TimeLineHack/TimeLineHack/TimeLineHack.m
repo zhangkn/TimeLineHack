@@ -7,8 +7,21 @@
 //
 
 #import "TimeLineHack.h"
+#import "TLHSwizzle.h"
 
 @implementation TimeLineHack
+
++ (id)shareInstance {
+    
+    static TimeLineHack *instacne = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instacne = [[TimeLineHack alloc] init];
+    });
+    
+    return instacne;
+}
 
 -(id)init
 {
