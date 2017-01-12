@@ -14,7 +14,7 @@ typedef IMP *IMPPointer;
 
 @end
 
-BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMPPointer store) {
+BOOL TLH_class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMPPointer store) {
     IMP imp = NULL;
     Method method = class_getInstanceMethod(class, original);
     if (method) {
@@ -29,7 +29,7 @@ BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMP
     
 } //http://blog.csdn.net/yiyaaixuexi/article/details/9374411 比较完美方法
 
-BOOL class_addSwizzleMethod(Class origClass, SEL origMethod, Class newClass, SEL newMethod) {
+BOOL TLH_class_addSwizzleMethod(Class origClass, SEL origMethod, Class newClass, SEL newMethod) {
     
     //实例方法
     Method ori_Method =  class_getInstanceMethod(origClass, origMethod);
@@ -56,7 +56,7 @@ BOOL class_addSwizzleMethod(Class origClass, SEL origMethod, Class newClass, SEL
     } //非完美方法
 }
 
-BOOL class_addSwizzleMethod2(Class origClass, SEL origMethod, Class newClass, SEL newMethod) {
+BOOL TLH_class_addSwizzleMethod2(Class origClass, SEL origMethod, Class newClass, SEL newMethod) {
     
     //静态方法
     Method ori_Method =  class_getClassMethod(origClass, origMethod);

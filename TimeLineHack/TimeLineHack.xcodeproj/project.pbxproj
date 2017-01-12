@@ -13,6 +13,8 @@
 		693B47101E25376B00A501CF /* TimeLineHack.m in Sources */ = {isa = PBXBuildFile; fileRef = 693B470F1E25376B00A501CF /* TimeLineHack.m */; };
 		693B471B1E2537B500A501CF /* TLHSwizzle.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B47191E2537B500A501CF /* TLHSwizzle.h */; };
 		693B471C1E2537B500A501CF /* TLHSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 693B471A1E2537B500A501CF /* TLHSwizzle.m */; };
+		693B471F1E25C44400A501CF /* WCTimeLineViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B471E1E25C44400A501CF /* WCTimeLineViewController.h */; };
+		693B47211E26104E00A501CF /* WCContentItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B47201E26104E00A501CF /* WCContentItem.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		693B47131E25376B00A501CF /* 0xdeadfa11 */ = {isa = PBXFileReference; lastKnownFileType = text; name = 0xdeadfa11; path = Package/usr/lib/0xdeadfa11; sourceTree = "<group>"; };
 		693B47191E2537B500A501CF /* TLHSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLHSwizzle.h; sourceTree = "<group>"; };
 		693B471A1E2537B500A501CF /* TLHSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLHSwizzle.m; sourceTree = "<group>"; };
+		693B471E1E25C44400A501CF /* WCTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTimeLineViewController.h; sourceTree = "<group>"; };
+		693B47201E26104E00A501CF /* WCContentItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCContentItem.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 				693B470F1E25376B00A501CF /* TimeLineHack.m */,
 				693B47191E2537B500A501CF /* TLHSwizzle.h */,
 				693B471A1E2537B500A501CF /* TLHSwizzle.m */,
+				693B471D1E25C42A00A501CF /* WeChat.h */,
 				693B47061E25376B00A501CF /* Package */,
 				693B470A1E25376B00A501CF /* Supporting Files */,
 			);
@@ -125,6 +130,15 @@
 			name = lib;
 			sourceTree = "<group>";
 		};
+		693B471D1E25C42A00A501CF /* WeChat.h */ = {
+			isa = PBXGroup;
+			children = (
+				693B471E1E25C44400A501CF /* WCTimeLineViewController.h */,
+				693B47201E26104E00A501CF /* WCContentItem.h */,
+			);
+			name = WeChat.h;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -133,7 +147,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */,
+				693B47211E26104E00A501CF /* WCContentItem.h in Headers */,
 				693B471B1E2537B500A501CF /* TLHSwizzle.h in Headers */,
+				693B471F1E25C44400A501CF /* WCTimeLineViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

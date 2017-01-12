@@ -15,8 +15,8 @@ typedef IMP *IMPPointer;
 
 @end
 
-BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMPPointer store);
+BOOL TLH_class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMPPointer store);
 
-BOOL class_addSwizzleMethod(Class origClass, SEL origMethod, Class newClass, SEL newMethod);//实例方法
+BOOL TLH_class_addSwizzleMethod(Class origClass, SEL origMethod, Class newClass, SEL newMethod);//实例方法
 
-BOOL class_addSwizzleMethod2(Class origClass, SEL origMethod, Class newClass, SEL newMethod);//静态方法
+BOOL TLH_class_addSwizzleMethod2(Class origClass, SEL origMethod, Class newClass, SEL newMethod);//静态方法
