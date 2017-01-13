@@ -11,6 +11,10 @@
 #import <UIKit/UIKit.h>
 #import "WCTimeLineViewController.h"
 #import "WCContentItem.h"
+#import "MMServiceCenter.h"
+#import "WCFacade.h"
+#import "WCDataItem.h"
+#import "MMNewSessionMgr.h"
 
 static void (*orig_TimeLine_reloadTableView)(id self, SEL _cmd);
 static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
@@ -18,6 +22,30 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     NSLog(@"朋友圈刷新列表");
     
     orig_TimeLine_reloadTableView(self, _cmd);
+    
+    MMServiceCenter *serviceCenter = [NSClassFromString(@"MMServiceCenter") defaultCenter];
+    
+    WCFacade *facade = [serviceCenter getService:NSClassFromString(@"WCFacade")];
+
+    NSMutableArray *timeLineDatas = [facade valueForKey:@"m_timelineWithLocalDatas"];
+    
+    NSLog(@"timeLineDatas %@", timeLineDatas);
+
+    WCDataItem *dataItem = [[NSClassFromString(@"WCDataItem") alloc] init];
+    
+    [dataItem setUsername:@"martin028174"];
+    
+    [dataItem setContentDesc:@"只是个测试"];
+
+    MMNewSessionMgr *newSessionMgr = [serviceCenter getService:objc_getClass("MMNewSessionMgr")];
+    
+    unsigned int time = [newSessionMgr GenSendMsgTime];
+
+    [dataItem setCreateTime:time];
+    
+    [dataItem setType:1];
+    
+    [timeLineDatas insertObject:dataItem atIndex:0];
 }
 
 static id (*orig_TimeLineView_cellForRowAtIndexPath)(id self, SEL _cmd, UITableView *arg1, id arg2);
@@ -69,9 +97,9 @@ static void new_WCFacade_reloadTimelineDataItems(id self, SEL _cmd) {
 }
 
 static int TLHMian() __attribute__ ((constructor)) {
-    /*
+    
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCTimeLineViewController"), @selector(reloadTableView), (IMP)new_TimeLine_reloadTableView, (IMP *)&orig_TimeLine_reloadTableView);
-
+/*
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCTimeLineViewController"), @selector(tableView:cellForRowAtIndexPath:), (IMP)new_TimeLineView_cellForRowAtIndexPath, (IMP*)&orig_TimeLineView_cellForRowAtIndexPath);
     
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCContentItem"), @selector(init), (IMP)new_WCContentItem_init, (IMP*)&orig_WCContentItem_init);
