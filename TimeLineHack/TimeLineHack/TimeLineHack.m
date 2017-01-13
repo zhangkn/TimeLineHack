@@ -15,6 +15,8 @@
 #import "WCFacade.h"
 #import "WCDataItem.h"
 #import "MMNewSessionMgr.h"
+#import "WCMediaItem.h"
+#import "WCUrl.h"
 
 static void (*orig_TimeLine_reloadTableView)(id self, SEL _cmd);
 static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
@@ -29,11 +31,11 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
 
     NSMutableArray *timeLineDatas = [facade valueForKey:@"m_timelineWithLocalDatas"];
     
-    NSLog(@"timeLineDatas %@", timeLineDatas);
+    NSLog(@"timeLineDatas begin %@", timeLineDatas);
 
     WCDataItem *dataItem = [[NSClassFromString(@"WCDataItem") alloc] init];
     
-    [dataItem setUsername:@"martin028174"];
+    [dataItem setUsername:@"gh_4b7111318206"];
     
     [dataItem setContentDesc:@"只是个测试"];
 
@@ -43,9 +45,57 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
 
     [dataItem setCreateTime:time];
     
-    [dataItem setType:1];
+    [dataItem setType:0];
+    
+    [dataItem setTid:@"12451152990729023630"];
+    
+    
+    WCContentItem *contentItem = [[NSClassFromString(@"WCContentItem") alloc] init];
+    
+    [contentItem setUsername:@"martin028174"];
+    
+    [contentItem setType:1];
+    
+    [contentItem setCreatetime:time];
+    
+    
+    
+    WCMediaItem *mediaItem = [[NSClassFromString(@"WCMediaItem") alloc] init];
+    
+    [mediaItem setType:1];
+    
+    [mediaItem setCreateTime:time];
+    
+    [mediaItem setSubType:0];
+    
+    
+    WCUrl *url = [NSClassFromString(@"WCUrl") UrlWithUrl:@"http://mmsns.qpic.cn/mmsns/bs7qzvQlecibalsmURObdlHE7ozTEHGhKyoOmCE7FiclkZh2WOcfkVYw/0" type:1];
+    
+//    [url setType:1];
+//    
+//    [url setUrl:@"http://mmsns.qpic.cn/mmsns/bs7qzvQlecibalsmURObdlHE7ozTEHGhKyoOmCE7FiclkZh2WOcfkVYw/0"];
+//    
+//    [url setEnckey:0];
+    
+//    [url setEncIdx:-1];
+    
+//    [url setToken:@""];
+    
+    [mediaItem setDataUrl:url];
+    
+    
+    NSMutableArray *mediaArray = [[NSMutableArray alloc] init];
+    
+    [mediaArray addObject:mediaItem];
+    
+    [contentItem setMediaList:mediaArray];
+    
+    [dataItem setContentObj:contentItem];
+    
     
     [timeLineDatas insertObject:dataItem atIndex:0];
+    
+    NSLog(@"timeLineDatas end %@", timeLineDatas);
 }
 
 static id (*orig_TimeLineView_cellForRowAtIndexPath)(id self, SEL _cmd, UITableView *arg1, id arg2);

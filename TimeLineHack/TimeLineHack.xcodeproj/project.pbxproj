@@ -11,6 +11,8 @@
 		4610F37D1E287764003C5323 /* WCFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F37C1E287764003C5323 /* WCFacade.h */; };
 		4610F37F1E287AD1003C5323 /* WCDataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F37E1E287AD1003C5323 /* WCDataItem.h */; };
 		4610F3811E2881B9003C5323 /* MMNewSessionMgr.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F3801E2881B9003C5323 /* MMNewSessionMgr.h */; };
+		4610F3831E28CFC1003C5323 /* WCMediaItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F3821E28CFC1003C5323 /* WCMediaItem.h */; };
+		4610F3851E28D0AA003C5323 /* WCUrl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F3841E28D0AA003C5323 /* WCUrl.h */; };
 		693B47021E25376B00A501CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693B47011E25376B00A501CF /* Foundation.framework */; };
 		693B47041E25376B00A501CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693B47031E25376B00A501CF /* UIKit.framework */; };
 		693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */ = {isa = PBXBuildFile; fileRef = 693B470D1E25376B00A501CF /* TimeLineHack.h */; };
@@ -26,6 +28,8 @@
 		4610F37C1E287764003C5323 /* WCFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCFacade.h; sourceTree = "<group>"; };
 		4610F37E1E287AD1003C5323 /* WCDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCDataItem.h; sourceTree = "<group>"; };
 		4610F3801E2881B9003C5323 /* MMNewSessionMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMNewSessionMgr.h; sourceTree = "<group>"; };
+		4610F3821E28CFC1003C5323 /* WCMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMediaItem.h; sourceTree = "<group>"; };
+		4610F3841E28D0AA003C5323 /* WCUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCUrl.h; sourceTree = "<group>"; };
 		693B46FE1E25376B00A501CF /* libTimeLineHack.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libTimeLineHack.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		693B47011E25376B00A501CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		693B47031E25376B00A501CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -146,6 +150,8 @@
 				4610F37A1E28775D003C5323 /* MMServiceCenter.h */,
 				4610F37C1E287764003C5323 /* WCFacade.h */,
 				4610F37E1E287AD1003C5323 /* WCDataItem.h */,
+				4610F3821E28CFC1003C5323 /* WCMediaItem.h */,
+				4610F3841E28D0AA003C5323 /* WCUrl.h */,
 				4610F3801E2881B9003C5323 /* MMNewSessionMgr.h */,
 			);
 			name = WeChat.h;
@@ -160,11 +166,13 @@
 			files = (
 				693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */,
 				693B47211E26104E00A501CF /* WCContentItem.h in Headers */,
+				4610F3831E28CFC1003C5323 /* WCMediaItem.h in Headers */,
 				4610F37D1E287764003C5323 /* WCFacade.h in Headers */,
 				4610F37F1E287AD1003C5323 /* WCDataItem.h in Headers */,
 				693B471B1E2537B500A501CF /* TLHSwizzle.h in Headers */,
 				4610F3811E2881B9003C5323 /* MMNewSessionMgr.h in Headers */,
 				4610F37B1E28775D003C5323 /* MMServiceCenter.h in Headers */,
+				4610F3851E28D0AA003C5323 /* WCUrl.h in Headers */,
 				693B471F1E25C44400A501CF /* WCTimeLineViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
