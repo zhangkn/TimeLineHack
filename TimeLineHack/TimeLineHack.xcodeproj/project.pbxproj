@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460F3A2D1E2DCE7600824462 /* WCAdvertiseInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 460F3A2C1E2DCE7600824462 /* WCAdvertiseInfo.h */; };
+		460F3A2F1E2DEDF400824462 /* WCObjectOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 460F3A2E1E2DEDF400824462 /* WCObjectOperation.h */; };
+		460F3A311E2DFBF500824462 /* WCADCanvasInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 460F3A301E2DFBF500824462 /* WCADCanvasInfo.h */; };
+		460F3A331E2E00FF00824462 /* WCMultiLanguageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 460F3A321E2E00FF00824462 /* WCMultiLanguageItem.h */; };
 		4610F37B1E28775D003C5323 /* MMServiceCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F37A1E28775D003C5323 /* MMServiceCenter.h */; };
 		4610F37D1E287764003C5323 /* WCFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F37C1E287764003C5323 /* WCFacade.h */; };
 		4610F37F1E287AD1003C5323 /* WCDataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4610F37E1E287AD1003C5323 /* WCDataItem.h */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		460F3A2C1E2DCE7600824462 /* WCAdvertiseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCAdvertiseInfo.h; sourceTree = "<group>"; };
+		460F3A2E1E2DEDF400824462 /* WCObjectOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCObjectOperation.h; sourceTree = "<group>"; };
+		460F3A301E2DFBF500824462 /* WCADCanvasInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCADCanvasInfo.h; sourceTree = "<group>"; };
+		460F3A321E2E00FF00824462 /* WCMultiLanguageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMultiLanguageItem.h; sourceTree = "<group>"; };
 		4610F37A1E28775D003C5323 /* MMServiceCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMServiceCenter.h; sourceTree = "<group>"; };
 		4610F37C1E287764003C5323 /* WCFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCFacade.h; sourceTree = "<group>"; };
 		4610F37E1E287AD1003C5323 /* WCDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCDataItem.h; sourceTree = "<group>"; };
@@ -153,6 +161,10 @@
 				4610F3821E28CFC1003C5323 /* WCMediaItem.h */,
 				4610F3841E28D0AA003C5323 /* WCUrl.h */,
 				4610F3801E2881B9003C5323 /* MMNewSessionMgr.h */,
+				460F3A2C1E2DCE7600824462 /* WCAdvertiseInfo.h */,
+				460F3A2E1E2DEDF400824462 /* WCObjectOperation.h */,
+				460F3A301E2DFBF500824462 /* WCADCanvasInfo.h */,
+				460F3A321E2E00FF00824462 /* WCMultiLanguageItem.h */,
 			);
 			name = WeChat.h;
 			sourceTree = "<group>";
@@ -167,10 +179,14 @@
 				693B470E1E25376B00A501CF /* TimeLineHack.h in Headers */,
 				693B47211E26104E00A501CF /* WCContentItem.h in Headers */,
 				4610F3831E28CFC1003C5323 /* WCMediaItem.h in Headers */,
+				460F3A331E2E00FF00824462 /* WCMultiLanguageItem.h in Headers */,
+				460F3A2F1E2DEDF400824462 /* WCObjectOperation.h in Headers */,
 				4610F37D1E287764003C5323 /* WCFacade.h in Headers */,
 				4610F37F1E287AD1003C5323 /* WCDataItem.h in Headers */,
+				460F3A2D1E2DCE7600824462 /* WCAdvertiseInfo.h in Headers */,
 				693B471B1E2537B500A501CF /* TLHSwizzle.h in Headers */,
 				4610F3811E2881B9003C5323 /* MMNewSessionMgr.h in Headers */,
+				460F3A311E2DFBF500824462 /* WCADCanvasInfo.h in Headers */,
 				4610F37B1E28775D003C5323 /* MMServiceCenter.h in Headers */,
 				4610F3851E28D0AA003C5323 /* WCUrl.h in Headers */,
 				693B471F1E25C44400A501CF /* WCTimeLineViewController.h in Headers */,

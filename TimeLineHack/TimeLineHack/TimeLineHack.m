@@ -17,11 +17,13 @@
 #import "MMNewSessionMgr.h"
 #import "WCMediaItem.h"
 #import "WCUrl.h"
+#import "WCAdvertiseInfo.h"
+#import "WCObjectOperation.h"
+#import "WCADCanvasInfo.h"
+#import "WCMultiLanguageItem.h"
 
 static void (*orig_TimeLine_reloadTableView)(id self, SEL _cmd);
 static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
-    
-    NSLog(@"朋友圈刷新列表");
     
     orig_TimeLine_reloadTableView(self, _cmd);
     
@@ -35,9 +37,101 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
 
     WCDataItem *dataItem = [[NSClassFromString(@"WCDataItem") alloc] init];
     
-    [dataItem setUsername:@"gh_4b7111318206"];
+    [dataItem setUsername:@"gh_08a102eb8dfb"];
+    
+    [dataItem setNickname:@""];
+    
+    [dataItem setFlag:0];
+    
+    [dataItem setType:0];
+    
+    [dataItem setCid:0];
     
     [dataItem setContentDesc:@"只是个测试"];
+    
+    [dataItem setSightFolded:0];
+    
+    [dataItem setStatExtStr:@"CncIARIUMTI0NDkxMzI0MDczMjUwNzExODIaKTE2MDAwMDYzMTJ8d3gweTdlazIyenFoN2JvaXx8MXwxNDg0NjE0Njk0IAAqMHNuc0lkPTEyNDQ5MTMyNDA3MzI1MDcxMTgyJmFkZ3JvdXBfaWQ9MTYwMDAwNjMxMg=="];
+    
+    [dataItem setSelfCommentCount:0];
+    
+    [dataItem setSelfLikeCount:0];
+    
+    [dataItem setRealLikeCount:0];
+    
+    [dataItem setRealCommentCount:0];
+    
+    [dataItem setIsLikeUsersUnsafe:0];
+    
+    [dataItem setIsContentUnsafe:0];
+    
+    [dataItem setCpKeyForLikeUsers:@"wctlls|gh_08a102eb8dfb|12449132407325071182"];
+    
+    
+    
+    WCObjectOperation *objectOperation = [[NSClassFromString(@"WCObjectOperation") alloc] init];
+    
+    [objectOperation setSnsOperateFlag:2];
+    
+    [dataItem setObjOperation:objectOperation];
+    
+    [dataItem setExtFlag:1];
+    
+    
+    //广告信息
+    WCAdvertiseInfo *advertiseInfo = [[NSClassFromString(@"WCAdvertiseInfo") alloc] init];
+    
+    [advertiseInfo setSessionAid:@"1600006312"];
+    
+    [advertiseInfo setTraceId:@"wx0y7ek22zqh7boi"];
+    
+    //广告画布
+    WCADCanvasInfo *canvasInfo = [[NSClassFromString(@"WCADCanvasInfo") alloc] init];
+    
+    [advertiseInfo setAdCanvasInfo:canvasInfo];
+    
+    
+    
+    [advertiseInfo setAdActionAppStoreType:0];
+    
+    [advertiseInfo setAdActionLinkWithTraceId:@"http://as.weixin.qq.com/cgi-bin/redirect?tid=1601982&wx_aid=1600006312&wx_traceid=wx0y7ek22zqh7boi00"];
+    
+    
+    NSMutableDictionary *adArgsDic = [[NSMutableDictionary alloc] initWithDictionary:@{@"classify_en" : @"appliance",
+                             @"classify_zh_TW" : @"\xe9\x9b\xbb\xe5\x99\xa8",
+                             @"classify_zh_CN" : @"\xe7\x94\xb5\xe5\x99\xa8"                                                        }];
+    
+    [advertiseInfo setAdArgsDic:adArgsDic];
+    
+    [advertiseInfo setUxInfo:@"1600006312|wx0y7ek22zqh7boi||1|1484614694"];
+    
+    WCMultiLanguageItem *languageItme = [[NSClassFromString(@"WCMultiLanguageItem") alloc] init];
+    
+    [languageItme setEn:@"Sponsored story"];
+    
+    [languageItme setZh:@"瞎写的"];
+    
+    [advertiseInfo setExpandInsideTitle:languageItme];
+    
+    
+    
+    [dataItem setAdvertiseInfo:advertiseInfo];
+    
+    [dataItem setContentDescPattern:@"<parser><type>1</type><range>{0, 12}</range></parser>"];
+    
+    NSMutableDictionary *extDataDic = [[NSMutableDictionary alloc] initWithDictionary:@{@"contentDescPattern" : [dataItem contentDescPattern]}];
+    
+    [dataItem setExtData:extDataDic];
+    
+    NSMutableArray *shareGroupArray = [[NSMutableArray alloc] init];
+    
+    [dataItem setSharedGroupIDs:shareGroupArray];
+    
+    [dataItem setContentDescScene:3];
+    
+    [dataItem setContentDescShowType:0];
+    
+
 
     MMNewSessionMgr *newSessionMgr = [serviceCenter getService:objc_getClass("MMNewSessionMgr")];
     
@@ -45,14 +139,12 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
 
     [dataItem setCreateTime:time];
     
-    [dataItem setType:0];
-    
     [dataItem setTid:@"12451152990729023630"];
     
     
     WCContentItem *contentItem = [[NSClassFromString(@"WCContentItem") alloc] init];
     
-    [contentItem setUsername:@"martin028174"];
+    [contentItem setUsername:@"gh_4b7111318206"];
     
     [contentItem setType:1];
     
