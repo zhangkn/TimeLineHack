@@ -94,7 +94,7 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [advertiseInfo setAdActionAppStoreType:0];
     
-    [advertiseInfo setAdActionLinkWithTraceId:@"http://as.weixin.qq.com/cgi-bin/redirect?tid=1601982&wx_aid=1600006312&wx_traceid=wx0y7ek22zqh7boi00"];
+    [advertiseInfo setAdActionLinkWithTraceId:@"http://www.baidu.com"];
     
     
     NSMutableDictionary *adArgsDic = [[NSMutableDictionary alloc] initWithDictionary:@{@"classify_en" : @"appliance",
@@ -109,7 +109,9 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [languageItme setEn:@"Sponsored story"];
     
-    [languageItme setZh:@"瞎写的"];
+    [languageItme setZh:@"赞助商提供的广告信息"];
+    
+    [languageItme setTw:@"赞助商提供的广告信息"];
     
     [advertiseInfo setExpandInsideTitle:languageItme];
     
