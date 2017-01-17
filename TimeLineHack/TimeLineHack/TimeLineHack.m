@@ -105,16 +105,48 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [advertiseInfo setUxInfo:@"1600006312|wx0y7ek22zqh7boi||1|1484614694"];
     
-    WCMultiLanguageItem *languageItme = [[NSClassFromString(@"WCMultiLanguageItem") alloc] init];
+    WCMultiLanguageItem *languageInItme = [[NSClassFromString(@"WCMultiLanguageItem") alloc] init];
     
-    [languageItme setEn:@"Sponsored story"];
+    [languageInItme setEn:@"Sponsored story"];
     
-    [languageItme setZh:@"赞助商提供的广告信息"];
+    [languageInItme setZh:@"赞助商提供的广告信息"];
     
-    [languageItme setTw:@"赞助商提供的广告信息"];
+    [languageInItme setTw:@"赞助商提供的广告信息"];
     
-    [advertiseInfo setExpandInsideTitle:languageItme];
+    [advertiseInfo setExpandInsideTitle:languageInItme];
     
+    WCMultiLanguageItem *languageOutItem = [[NSClassFromString(@"WCMultiLanguageItem") alloc] init];
+    
+    [languageOutItem setEn:@"Sponsored"];
+    
+    [languageOutItem setZh:@"广告"];
+    
+    [languageOutItem setTw:@"广告"];
+    
+    [advertiseInfo setExpandOutsideTitle:languageOutItem];
+    
+    [advertiseInfo setAdActionLinkHidden:NO]; //是否隐藏链接
+    
+    
+    [advertiseInfo setAdUserNickName:@"瞎鸡巴写"];
+    
+    [advertiseInfo setWebviewRightBarShow:YES];
+    
+    [advertiseInfo setExposureNoActionExpireTime:660];
+    
+    [advertiseInfo setNoExposureExpireTime:660];
+    
+    [advertiseInfo setBExposured:YES];
+    
+    [advertiseInfo setAdPosition:4];
+    
+    [advertiseInfo setAdViewId:@"6X9Bvd1FVd7vP1aQCItCC/6UEmDQEcGfnpZZDAqsfMBSU9Xa2Xwm2K0C45/haYeeVNwfIHT7uQ/PCfJDFJ5YDxbmH0Jjxwn74H9Tkq0Kl5EqhxgOod/RLWyxSUd6gA9bvQUpO47JodAuU8QevhN6QhJfh9k/v4f6P0GAo3e4jD%2BaOvNb%2BW3pHoN/Ye9D1tWFVm0pESIMHpcuFgdVSJXPv/wSzdXT9AS6WMB7ENaU7TMa4sp7FK1xmqDhWp3L9M0K3FGlXFAUx%2B8ZXC9wIK66maJjdHdBsgyRfJs87%2BII7gE3ZMs9QJ6VYXxhbWl7Sh8PjuPkm2EN%2B53fAQhvRsFMjjFAl6Sw8FoQ3ymgz7s22S3bMyhqex%2B5VhfSMjNes9dOO1XNOhYzP74tI2iF111%2BE3S6VdsBsOJSfdtvu33B%2B2ZAv5dliviVcI/Lbo24OwGFYUeue3GwzR%2BqrI4dx3DzjiKb7XqevpLALGEf%2B8tgRPpyNmkRjPSgTTJyOpCCN49LvfAyLI2Y%2BueBRlS2zDrYytXV%2BLELiYDydHBVXlr12oPU4ABG1CqnrkIBFZE67RDICjGAcxmsmFlZeCZ2zEQi4Fpysfb6p/swj769ysRGKN56lPem8pW/hLMEAwKUkNmEa//Qa/%2BZNmHMTphH8a7Rgj0TKiEv7T1IEEU2dqsqxlebpXdCplKEhbNFPecQpXjFeQ/0uCM/kqdRehbRIRrZTfxOCIupdv7NR2/rb1we7z2UOSgQlWW4W73jVoDeiJtaWVXNvhgWscmaSVK9B6wKlr97YzVBBGzk"];
+    
+    [advertiseInfo setAdActionType:0];
+    
+    [advertiseInfo setAdActionLink:@"https://www.baidu.com"];
+    
+    [advertiseInfo setAdDescription:@"这又是啥"];
     
     
     [dataItem setAdvertiseInfo:advertiseInfo];
