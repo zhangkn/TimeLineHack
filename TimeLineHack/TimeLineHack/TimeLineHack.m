@@ -148,6 +148,7 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [advertiseInfo setAdDescription:@"这又是啥"];
     
+    [advertiseInfo setAdType:0];
     
     [dataItem setAdvertiseInfo:advertiseInfo];
     
@@ -180,9 +181,15 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [contentItem setUsername:@"gh_4b7111318206"];
     
-    [contentItem setType:1];
+    [contentItem setType:1];  //1为图  15为小视频
+    
+    [contentItem setFlag:0];
     
     [contentItem setCreatetime:time];
+    
+    [contentItem setDesc:@""];
+    
+    [contentItem setTitle:@""];
     
     
     
@@ -193,6 +200,25 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     [mediaItem setCreateTime:time];
     
     [mediaItem setSubType:0];
+    
+    [mediaItem setEntrance:1];
+    
+    [mediaItem setIsAd:YES];
+    
+    [mediaItem setXorEncrpyKey:0];
+    
+    [mediaItem setBUseXorEncrypt:NO];
+    
+    [mediaItem setBSupoortValidateMd5:NO];
+    
+    [mediaItem setBSnsScene:YES];
+    
+    [mediaItem setAttachVideoTotalTime:34];// 视频时长？
+    
+    [mediaItem setImgSize:CGSizeMake(640, 480)];
+    
+    [mediaItem setAttachShareTitle:@"什么鬼"];
+    
     
     
     WCUrl *url = [NSClassFromString(@"WCUrl") UrlWithUrl:@"http://mmsns.qpic.cn/mmsns/bs7qzvQlecibalsmURObdlHE7ozTEHGhKyoOmCE7FiclkZh2WOcfkVYw/0" type:1];
@@ -209,11 +235,33 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [mediaItem setDataUrl:url];
     
+//    attachThumbUrl   attachUrl 视频时需要用到
+    
+    NSMutableArray *previewUrls = [[NSMutableArray alloc] initWithObjects:url, nil];
+    
+    [mediaItem setPreviewUrls:previewUrls];
+    
+    [mediaItem setUserData:@""];
+    
+    [mediaItem setTitle:@""];
+    
+    [mediaItem setDesc:@""];
+    
+    [mediaItem setSubType:0];
+    
+//    [mediaItem setType:5];
+    
+    [mediaItem setMid:@"12454827411965613937"];
+    
+    [mediaItem setTid:@"12451152990729023630"];
+    
+    
+    
     
     NSMutableArray *mediaArray = [[NSMutableArray alloc] init];
     
     [mediaArray addObject:mediaItem];
-    
+
     [contentItem setMediaList:mediaArray];
     
     [dataItem setContentObj:contentItem];
