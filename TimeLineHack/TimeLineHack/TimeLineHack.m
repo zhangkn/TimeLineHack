@@ -272,6 +272,13 @@ static void new_WCFacade_reloadTimelineDataItems(id self, SEL _cmd) {
     orig_WCFacade_reloadTimelineDataItems(self, _cmd);
 }
 
+static void (*orig_WCTimelineMgr_onDataUpdated_andData)(id self, SEL _cmd, id arg1, NSArray *arg2, id arg3, int arg4);
+static void new_WCTimelineMgr_onDataUpdated_andData(id self, SEL _cmd, id arg1, NSArray *arg2, id arg3, int arg4) {
+    
+    //arg2 是朋友圈列表数据，猜想可以在这位置插入数据
+    orig_WCTimelineMgr_onDataUpdated_andData(self, _cmd, arg1, arg2, arg3, arg4);
+}
+
 static int TLHMian() __attribute__ ((constructor)) {
     
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCTimeLineViewController"), @selector(reloadTableView), (IMP)new_TimeLine_reloadTableView, (IMP *)&orig_TimeLine_reloadTableView);
@@ -290,6 +297,9 @@ static int TLHMian() __attribute__ ((constructor)) {
     
     WCFacade onTimelineDataChangedWithAdded:andChanged:andDeleted:   //增删查改
     */
+    
+    TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCTimelineMgr"), @selector(onDataUpdated:andData:andAdData:withChangedTime:), (IMP)new_WCTimelineMgr_onDataUpdated_andData, (IMP *)&orig_WCTimelineMgr_onDataUpdated_andData);
+    
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCFacade"), @selector(onTimelineDataChangedWithAdded:andChanged:andDeleted:), (IMP)new_WCFacade_onTimelineDataChangedWithAdded, (IMP*)&orig_WCFacade_onTimelineDataChangedWithAdded);
     
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCFacade"), @selector(reloadTimelineDataItems), (IMP)new_WCFacade_reloadTimelineDataItems, (IMP*)&orig_WCFacade_reloadTimelineDataItems);
