@@ -22,6 +22,8 @@
 #import "WCADCanvasInfo.h"
 #import "WCMultiLanguageItem.h"
 
+static WCDataItem *newADData();
+
 static void (*orig_TimeLine_reloadTableView)(id self, SEL _cmd);
 static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
@@ -34,61 +36,155 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     NSMutableArray *timeLineDatas = [facade valueForKey:@"m_timelineWithLocalDatas"];
     
     NSLog(@"timeLineDatas begin %@", timeLineDatas);
+}
+
+static id (*orig_TimeLineView_cellForRowAtIndexPath)(id self, SEL _cmd, UITableView *arg1, id arg2);
+static id new_TimeLineView_cellForRowAtIndexPath(id self, SEL _cmd, UITableView *arg1, id arg2) {
+    
+    NSLog(@"朋友圈获取CELL");
+
+    return orig_TimeLineView_cellForRowAtIndexPath(self, _cmd, arg1, arg2);
+}
+
+static id (*orig_WCContentItem_init)(WCContentItem *self, SEL _cmd);
+static id new_WCContentItem_init(WCContentItem *self, SEL _cmd) {
+    
+    NSLog(@"朋友圈CELL 数据");
+    
+    WCContentItem *orig_item = orig_WCContentItem_init(self, _cmd);
+    
+    NSLog(@"原来的内容, %@", orig_item.desc);
+    
+    return orig_WCContentItem_init(self, _cmd);
+}
+
+static id (*orig_WCContentItem_initWithCoder)(WCContentItem *self, SEL _cmd, id arg1);
+static id new_WCContentItem_initWithCoder(WCContentItem *self, SEL _cmd, id arg1) {
+    
+    NSLog(@"朋友圈CELL 数据2");
+    
+    WCContentItem *orig_item = orig_WCContentItem_initWithCoder(self, _cmd, arg1);
+    
+    NSLog(@"原来的内容 2, title: %@, desc: %@, nickname :%@", orig_item.title, orig_item.mediaList, orig_item.username);
+    
+    return orig_item;
+}
+
+static id (*orig_WCFacade_onTimelineDataChangedWithAdded)(id self, SEL _cmd, id arg1, id arg2, id arg3);
+static id new_WCFacade_onTimelineDataChangedWithAdded(id self, SEL _cmd, id arg1, id arg2, id arg3) {
+    
+    NSLog(@"new_WCFacade_onTimelineDataChangedWithAdded 1 %@, %@, %@", arg1, arg2, arg3);
+    
+    WCDataItem *dataItem = newADData();
+    
+    NSString *tid = dataItem.tid;
+    
+    BOOL isItemAdded = NO;
+    
+    for (NSString *itemTid in arg3) {
+        
+        if ([tid isEqualToString:itemTid]) {
+            
+            isItemAdded = YES;
+            
+            break;
+        }
+    }
+    
+    if (isItemAdded) {
+        
+        NSMutableArray *deleteArray = [[NSMutableArray alloc] initWithArray:arg3];
+        
+        [deleteArray removeObject:tid];
+        
+        arg3 = deleteArray;
+        
+        NSMutableArray *addArray = [[NSMutableArray alloc] initWithArray:arg1];
+        
+        [addArray removeObject:tid];
+        
+        arg1 = addArray;
+    }
+    
+    NSLog(@"new_WCFacade_onTimelineDataChangedWithAdded 2 %@, %@, %@", arg1, arg2, arg3);
+    
+    return orig_WCFacade_onTimelineDataChangedWithAdded(self, _cmd, arg1, arg2, arg3);
+}
+
+static void (*orig_WCFacade_reloadTimelineDataItems)(id self, SEL _cmd);
+static void new_WCFacade_reloadTimelineDataItems(id self, SEL _cmd) {
+    
+    NSLog(@"new_WCFacade_reloadTimelineDataItems");
+
+    orig_WCFacade_reloadTimelineDataItems(self, _cmd);
+}
+
+BOOL hasAddAdItem = NO; //已经添加过朋友圈广告
+static void (*orig_WCTimelineMgr_onDataUpdated_andData)(id self, SEL _cmd, id arg1, NSArray *arg2, id arg3, int arg4);
+static void new_WCTimelineMgr_onDataUpdated_andData(id self, SEL _cmd, id arg1, NSArray *arg2, id arg3, int arg4) {
+    
+//    if (!hasAddAdItem) {
+    
+        if ([arg2 count] > 0) {
+    
+            WCDataItem *dataItem = newADData();
+            
+            NSString *tid = dataItem.tid;
+            
+            BOOL needAdd = YES;
+            
+            for (WCDataItem *item in arg2) {
+                
+                if ([tid isEqualToString:item.tid]) {
+                    
+                    needAdd = NO;
+                    
+                    break;
+                }
+            }
+            
+            if (needAdd) {
+                
+                NSMutableArray *timeLineData = [[NSMutableArray alloc] initWithArray:arg2];
+                
+                [timeLineData insertObject:newADData() atIndex:0];
+                
+                hasAddAdItem = YES;
+                
+                arg2 = (NSArray *)timeLineData;
+            }
+        }
+//    }
+    
+
+    
+    //arg2 是朋友圈列表数据，猜想可以在这位置插入数据
+    orig_WCTimelineMgr_onDataUpdated_andData(self, _cmd, arg1, arg2, arg3, arg4);
+}
+
+static WCDataItem *newADData() {
+    
+    MMServiceCenter *serviceCenter = [NSClassFromString(@"MMServiceCenter") defaultCenter];
+    
+    WCFacade *facade = [serviceCenter getService:NSClassFromString(@"WCFacade")];
 
     WCDataItem *dataItem = [[NSClassFromString(@"WCDataItem") alloc] init];
     
-    [dataItem setUsername:@"gh_08a102eb8dfb"];
-    
-    [dataItem setNickname:@""];
-    
-    [dataItem setFlag:0];
-    
-    [dataItem setType:0];
-    
-    [dataItem setCid:0];
-    
-    [dataItem setContentDesc:@"只是个测试"];
-    
-    [dataItem setSightFolded:0];
-    
-    [dataItem setStatExtStr:@"CncIARIUMTI0NDkxMzI0MDczMjUwNzExODIaKTE2MDAwMDYzMTJ8d3gweTdlazIyenFoN2JvaXx8MXwxNDg0NjE0Njk0IAAqMHNuc0lkPTEyNDQ5MTMyNDA3MzI1MDcxMTgyJmFkZ3JvdXBfaWQ9MTYwMDAwNjMxMg=="];
-    
-    [dataItem setSelfCommentCount:0];
-    
-    [dataItem setSelfLikeCount:0];
-    
-    [dataItem setRealLikeCount:0];
-    
-    [dataItem setRealCommentCount:0];
-    
-    [dataItem setIsLikeUsersUnsafe:0];
-    
-    [dataItem setIsContentUnsafe:0];
-    
-    [dataItem setCpKeyForLikeUsers:@"wctlls|gh_08a102eb8dfb|12449132407325071182"];
-    
-    
-    
-    WCObjectOperation *objectOperation = [[NSClassFromString(@"WCObjectOperation") alloc] init];
-    
-    [objectOperation setSnsOperateFlag:2];
-    
-    [dataItem setObjOperation:objectOperation];
-    
-    [dataItem setExtFlag:1];
-    
-    
     //广告信息
     WCAdvertiseInfo *advertiseInfo = [[NSClassFromString(@"WCAdvertiseInfo") alloc] init];
+    
+        [advertiseInfo setAdActionLinkHidden:NO]; //是否隐藏链接
+    
+        [advertiseInfo setAttachShareLinkHidden:NO];
     
     [advertiseInfo setSessionAid:@"1600006312"];
     
     [advertiseInfo setTraceId:@"wx0y7ek22zqh7boi"];
     
     //广告画布
-    WCADCanvasInfo *canvasInfo = [[NSClassFromString(@"WCADCanvasInfo") alloc] init];
-    
-    [advertiseInfo setAdCanvasInfo:canvasInfo];
+    //    WCADCanvasInfo *canvasInfo = [[NSClassFromString(@"WCADCanvasInfo") alloc] init];
+    //
+    //    [advertiseInfo setAdCanvasInfo:canvasInfo];
     
     
     
@@ -98,8 +194,8 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     
     NSMutableDictionary *adArgsDic = [[NSMutableDictionary alloc] initWithDictionary:@{@"classify_en" : @"appliance",
-                             @"classify_zh_TW" : @"\xe9\x9b\xbb\xe5\x99\xa8",
-                             @"classify_zh_CN" : @"\xe7\x94\xb5\xe5\x99\xa8"                                                        }];
+                                                                                       @"classify_zh_TW" : @"下载游戏",
+                                                                                       @"classify_zh_CN" : @"下载游戏"                                                        }];
     
     [advertiseInfo setAdArgsDic:adArgsDic];
     
@@ -125,10 +221,11 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [advertiseInfo setExpandOutsideTitle:languageOutItem];
     
-    [advertiseInfo setAdActionLinkHidden:NO]; //是否隐藏链接
     
     
-    [advertiseInfo setAdUserNickName:@"瞎鸡巴写"];
+    //    adActionLinkName 链接字样
+    
+    [advertiseInfo setAdUserNickName:@"瞎鸡巴写"]; //链接标题
     
     [advertiseInfo setWebviewRightBarShow:YES];
     
@@ -152,6 +249,48 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [dataItem setAdvertiseInfo:advertiseInfo];
     
+    
+    
+    [dataItem setUsername:@"gh_69738dd30c9f"];
+    
+    [dataItem setNickname:@""];
+    
+    [dataItem setFlag:0];
+    
+    [dataItem setType:0];
+    
+    [dataItem setCid:0];
+    
+    [dataItem setContentDesc:@"只是个测试\n测测测测测"];
+    
+    [dataItem setSightFolded:0];
+    
+    [dataItem setStatExtStr:@"CncIARIUMTI0NDkxMzI0MDczMjUwNzExODIaKTE2MDAwMDYzMTJ8d3gweTdlazIyenFoN2JvaXx8MXwxNDg0NjE0Njk0IAAqMHNuc0lkPTEyNDQ5MTMyNDA3MzI1MDcxMTgyJmFkZ3JvdXBfaWQ9MTYwMDAwNjMxMg=="];
+    
+    [dataItem setSelfCommentCount:0];
+    
+    [dataItem setSelfLikeCount:0];
+    
+    [dataItem setRealLikeCount:0];
+    
+    [dataItem setRealCommentCount:0];
+    
+    [dataItem setIsLikeUsersUnsafe:0];
+    
+    [dataItem setIsContentUnsafe:0];
+    
+    [dataItem setCpKeyForLikeUsers:@"wctlls|gh_69738dd30c9f|12449132407325071182"];
+    
+    
+    
+    WCObjectOperation *objectOperation = [[NSClassFromString(@"WCObjectOperation") alloc] init];
+    
+    [objectOperation setSnsOperateFlag:2];
+    
+    [dataItem setObjOperation:objectOperation];
+    
+    [dataItem setExtFlag:1];
+
     [dataItem setContentDescPattern:@"<parser><type>1</type><range>{0, 12}</range></parser>"];
     
     NSMutableDictionary *extDataDic = [[NSMutableDictionary alloc] initWithDictionary:@{@"contentDescPattern" : [dataItem contentDescPattern]}];
@@ -166,20 +305,21 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [dataItem setContentDescShowType:0];
     
-
-
+    
+    
     MMNewSessionMgr *newSessionMgr = [serviceCenter getService:objc_getClass("MMNewSessionMgr")];
     
     unsigned int time = [newSessionMgr GenSendMsgTime];
-
-    [dataItem setCreateTime:time];
+    
+    NSLog(@"GenSendMsgTime %d", time);
+    
+    [dataItem setCreateTime:1486536809];
     
     [dataItem setTid:@"12451152990729023630"];
     
-    
     WCContentItem *contentItem = [[NSClassFromString(@"WCContentItem") alloc] init];
     
-    [contentItem setUsername:@"gh_4b7111318206"];
+    [contentItem setUsername:@"gh_69738dd30c9f"];
     
     [contentItem setType:1];  //1为图  15为小视频
     
@@ -223,19 +363,19 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     WCUrl *url = [NSClassFromString(@"WCUrl") UrlWithUrl:@"http://mmsns.qpic.cn/mmsns/bs7qzvQlecibalsmURObdlHE7ozTEHGhKyoOmCE7FiclkZh2WOcfkVYw/0" type:1];
     
-//    [url setType:1];
-//    
-//    [url setUrl:@"http://mmsns.qpic.cn/mmsns/bs7qzvQlecibalsmURObdlHE7ozTEHGhKyoOmCE7FiclkZh2WOcfkVYw/0"];
-//    
-//    [url setEnckey:0];
+    //    [url setType:1];
+    //
+    //    [url setUrl:@"http://mmsns.qpic.cn/mmsns/bs7qzvQlecibalsmURObdlHE7ozTEHGhKyoOmCE7FiclkZh2WOcfkVYw/0"];
+    //
+    //    [url setEnckey:0];
     
-//    [url setEncIdx:-1];
+    //    [url setEncIdx:-1];
     
-//    [url setToken:@""];
+    //    [url setToken:@""];
     
     [mediaItem setDataUrl:url];
     
-//    attachThumbUrl   attachUrl 视频时需要用到
+    //    attachThumbUrl   attachUrl 视频时需要用到
     
     NSMutableArray *previewUrls = [[NSMutableArray alloc] initWithObjects:url, nil];
     
@@ -249,87 +389,31 @@ static void new_TimeLine_reloadTableView(id self, SEL _cmd) {
     
     [mediaItem setSubType:0];
     
-//    [mediaItem setType:5];
+    //    [mediaItem setType:5];
     
     [mediaItem setMid:@"12454827411965613937"];
     
     [mediaItem setTid:@"12451152990729023630"];
-    
-    
-    
-    
+
     NSMutableArray *mediaArray = [[NSMutableArray alloc] init];
     
     [mediaArray addObject:mediaItem];
-
+    
     [contentItem setMediaList:mediaArray];
     
     [dataItem setContentObj:contentItem];
-    
-    
-    [timeLineDatas insertObject:dataItem atIndex:0];
-    
-    NSLog(@"timeLineDatas end %@", timeLineDatas);
-}
 
-static id (*orig_TimeLineView_cellForRowAtIndexPath)(id self, SEL _cmd, UITableView *arg1, id arg2);
-static id new_TimeLineView_cellForRowAtIndexPath(id self, SEL _cmd, UITableView *arg1, id arg2) {
     
-    NSLog(@"朋友圈获取CELL");
-
-    return orig_TimeLineView_cellForRowAtIndexPath(self, _cmd, arg1, arg2);
-}
-
-static id (*orig_WCContentItem_init)(WCContentItem *self, SEL _cmd);
-static id new_WCContentItem_init(WCContentItem *self, SEL _cmd) {
-    
-    NSLog(@"朋友圈CELL 数据");
-    
-    WCContentItem *orig_item = orig_WCContentItem_init(self, _cmd);
-    
-    NSLog(@"原来的内容, %@", orig_item.desc);
-    
-    return orig_WCContentItem_init(self, _cmd);
-}
-
-static id (*orig_WCContentItem_initWithCoder)(WCContentItem *self, SEL _cmd, id arg1);
-static id new_WCContentItem_initWithCoder(WCContentItem *self, SEL _cmd, id arg1) {
-    
-    NSLog(@"朋友圈CELL 数据2");
-    
-    WCContentItem *orig_item = orig_WCContentItem_initWithCoder(self, _cmd, arg1);
-    
-    NSLog(@"原来的内容 2, title: %@, desc: %@, nickname :%@", orig_item.title, orig_item.mediaList, orig_item.username);
-    
-    return orig_item;
-}
-
-static id (*orig_WCFacade_onTimelineDataChangedWithAdded)(id self, SEL _cmd, id arg1, id arg2, id arg3);
-static id new_WCFacade_onTimelineDataChangedWithAdded(id self, SEL _cmd, id arg1, id arg2, id arg3) {
-    
-    NSLog(@"new_WCFacade_onTimelineDataChangedWithAdded %@, %@, %@", arg1, arg2, arg3);
-    
-    return orig_WCFacade_onTimelineDataChangedWithAdded(self, _cmd, arg1, arg2, arg3);
-}
-
-static void (*orig_WCFacade_reloadTimelineDataItems)(id self, SEL _cmd);
-static void new_WCFacade_reloadTimelineDataItems(id self, SEL _cmd) {
-    
-    NSLog(@"new_WCFacade_reloadTimelineDataItems");
-
-    orig_WCFacade_reloadTimelineDataItems(self, _cmd);
-}
-
-static void (*orig_WCTimelineMgr_onDataUpdated_andData)(id self, SEL _cmd, id arg1, NSArray *arg2, id arg3, int arg4);
-static void new_WCTimelineMgr_onDataUpdated_andData(id self, SEL _cmd, id arg1, NSArray *arg2, id arg3, int arg4) {
-    
-    //arg2 是朋友圈列表数据，猜想可以在这位置插入数据
-    orig_WCTimelineMgr_onDataUpdated_andData(self, _cmd, arg1, arg2, arg3, arg4);
+    return dataItem;
 }
 
 static int TLHMian() __attribute__ ((constructor)) {
-    
+    /*
+     **  刷新时插入
+     */
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCTimeLineViewController"), @selector(reloadTableView), (IMP)new_TimeLine_reloadTableView, (IMP *)&orig_TimeLine_reloadTableView);
+    
+    
 /*
     TLH_class_swizzleMethodAndStore(NSClassFromString(@"WCTimeLineViewController"), @selector(tableView:cellForRowAtIndexPath:), (IMP)new_TimeLineView_cellForRowAtIndexPath, (IMP*)&orig_TimeLineView_cellForRowAtIndexPath);
     
